@@ -1,8 +1,5 @@
 /*
-Starting off:
-  cd <parent directory>
-  mkdir <create directory name>
-  cd <new directory>
+Starting off
   git clone <URL>
 
 To check that status and checkout some branches:
