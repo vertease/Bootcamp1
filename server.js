@@ -1,7 +1,25 @@
 /*
- git add .
- git commit -m "name"
- git push origin master (or branch name)
+Starting off:
+  cd <parent directory>
+  mkdir <create directory name>
+  cd <new directory>
+  git clone <URL>
+
+To check that status and checkout some branches:
+  git branch -a
+  git status  
+  git checkout <branch name>
+
+To view where it's at:
+  git remote -v  
+
+To save it on new github repo:
+  git remote set-url origin <URL>
+
+To push to remote:
+  git add .
+  git commit -m "name"
+  git push origin master (or branch name)
 */
 
 
@@ -16,14 +34,15 @@ var listingData, server;
 var requestHandler = function(request, response) {
   var parsedUrl = url.parse(request.url);
 
-  // response.end(parsedUrl.pathname)
 
-  if (parsedUrl.pathname == "/listings"){
-    response.end("You got it!")
-    
+
+  if (parsedUrl.pathname === "/listings" && request.method === 'GET'){
+    response.statusCode = 200
+    response.end(listingData)
   }
   else{
-    response.end("That's not it!")
+    response.statusCode = 404
+    response.end("Bad gateway error")
   }
   /*
     Your request handler should send listingData in the JSON format as a response if a GET request 
